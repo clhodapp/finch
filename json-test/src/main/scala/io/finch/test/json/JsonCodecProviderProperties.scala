@@ -1,6 +1,6 @@
 package io.finch.test.json
 
-import argonaut.{CodecJson, DecodeJson, EncodeJson, Json, Parse}
+import argonaut.{CodecJson, DecodeJson, EncodeJsonScalaz, Json, Parse}
 import argonaut.Argonaut.{casecodec3, casecodec5, jNull, jString}
 import com.twitter.io.Buf
 import com.twitter.io.Buf.Utf8
@@ -163,7 +163,7 @@ object ArgonautCodecs {
 
   val exampleNestedCaseClassListCodecJson: CodecJson[List[ExampleNestedCaseClass]] =
     CodecJson.derived(
-      EncodeJson.fromFoldable[List, ExampleNestedCaseClass](
+      EncodeJsonScalaz.fromFoldable[List, ExampleNestedCaseClass](
         exampleNestedCaseClassCodecJson,
         scalaz.std.list.listInstance
       ),

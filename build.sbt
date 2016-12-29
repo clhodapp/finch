@@ -9,7 +9,7 @@ lazy val buildSettings = Seq(
 
 lazy val finagleVersion = "6.41.0"
 lazy val utilVersion = "6.40.0"
-lazy val twitterServerVersion = "1.25.0"
+lazy val twitterServerVersion = "1.26.0"
 lazy val finagleOAuth2Version = "0.3.0"
 lazy val circeVersion = "0.6.1"
 lazy val circeJacksonVersion = "0.6.2"
@@ -19,8 +19,7 @@ lazy val catsVersion = "0.8.1"
 lazy val sprayVersion = "1.3.2"
 lazy val playVersion = "2.3.10"
 lazy val jacksonVersion = "2.8.5"
-lazy val argonautVersion = "6.1"
-lazy val jawnVersion = "0.10.4"
+lazy val argonautVersion = "6.2-RC2"
 lazy val json4sVersion = "3.5.0"
 
 lazy val compilerOptions = Seq(
@@ -163,7 +162,8 @@ lazy val jsonTest = project.in(file("json-test"))
   .settings(coverageExcludedPackages := "io\\.finch\\.test\\..*")
   .settings(
     libraryDependencies ++= Seq(
-      "io.argonaut" %% "argonaut" % argonautVersion
+      "io.argonaut" %% "argonaut" % argonautVersion,
+      "io.argonaut" %% "argonaut-scalaz" % argonautVersion
     ) ++ testDependencies
   )
   .dependsOn(core)
@@ -173,8 +173,7 @@ lazy val argonaut = project
   .settings(allSettings)
   .settings(libraryDependencies ++= Seq(
     "io.argonaut" %% "argonaut" % argonautVersion,
-    "org.spire-math" %% "jawn-parser" % jawnVersion,
-    "org.spire-math" %% "jawn-argonaut" % jawnVersion
+    "io.argonaut" %% "argonaut-jawn" % argonautVersion
   ))
   .dependsOn(core, jsonTest % "test")
 
